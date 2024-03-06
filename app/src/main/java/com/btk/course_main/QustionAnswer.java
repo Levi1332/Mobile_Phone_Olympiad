@@ -8,8 +8,8 @@ public class QustionAnswer {
     };
     public static String choices[][]={
             {"int, double, boolean, String","только числа","только текст","только целые числа"},
-            {"Контейнеры для данных","Методы для операций","Создание графики","Константы"},
-            {"IntelliJ IDEA, Eclipse","Текстовые редакторы","Visual Studio","Своя среда разработки"}
+            {"Методы для операций","Создание графики","Константы","Контейнеры для данных",},
+            {"Текстовые редакторы","IntelliJ IDEA, Eclipse","Visual Studio","Своя среда разработки"}
     };
     public static String correctAnswers[] = {
             "int, double, boolean, String",

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799618249971",
+    "project_id": "signup-login-firebase-a238b",
+    "storage_bucket": "signup-login-firebase-a238b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799618249971:android:737ea1d97ff0c1e5f97386",
+        "android_client_info": {
+          "package_name": "com.btk.course_main"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw-FE2nZL266UGsa12oAzX3Sd9nYUr9cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

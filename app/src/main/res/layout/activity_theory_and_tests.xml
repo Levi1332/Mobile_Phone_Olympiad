@@ -17,8 +17,8 @@
 
     <TextView
         android:id="@+id/main_theory"
-        android:layout_width="400dp"
-        android:layout_height="740dp"
+        android:layout_width="351dp"
+        android:layout_height="712dp"
         android:layout_marginTop="104dp"
         android:text="@string/main_text_for_1_course"
         app:layout_constraintStart_toStartOf="parent"

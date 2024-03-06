@@ -75,8 +75,7 @@ public class theory_and_tests extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(theory_and_tests.this, activity_for_test.class);
-                startActivity(intent);
+                beta_switch_topic(5);
             }
         });
     }
@@ -87,29 +86,40 @@ public class theory_and_tests extends AppCompatActivity {
             case 1:
                 get_text_for_print(button_number);
                 break;
+            case 2:
+
+                break;
         }
     }
     private void get_text_for_print(int button_number)
     {
         final String[] text_for_print = new String[1];
-        switch (button_number)
+        if (topic_number==1) {
+            switch (button_number) {
+                case 1:
+                    text_for_print[0] = getString(R.string.text_lesson1);
+                    textView.setText(text_for_print[0]);
+                    break;
+                case 2:
+                    text_for_print[0] = getString(R.string.text_lesson1_2);
+                    textView.setText(text_for_print[0]);
+                    break;
+                case 3:
+                    text_for_print[0] = getString(R.string.text_lesson1_3);
+                    textView.setText(text_for_print[0]);
+                    break;
+                case 4:
+                    text_for_print[0] = getString(R.string.text_lesson1_4);
+                    textView.setText(text_for_print[0]);
+                    break;
+                case 5:
+                    Intent intent = new Intent(theory_and_tests.this, activity_for_test.class);
+                    startActivity(intent);
+                    break;
+            }
+        }else if (topic_number==2)
         {
-            case 1:
-                text_for_print[0] =  getString(R.string.text_lesson1);
-                textView.setText(text_for_print[0]);
-                break;
-            case 2:
-                text_for_print[0] =  getString(R.string.text_lesson1_2);
-                textView.setText(text_for_print[0]);
-                break;
-            case 3:
-                text_for_print[0] =  getString(R.string.text_lesson1_3);
-                textView.setText(text_for_print[0]);
-                break;
-            case 4:
-                text_for_print[0] =  getString(R.string.text_lesson1_4);
-                textView.setText(text_for_print[0]);
-                break;
+
         }
     }
     private void defining_a_topic(String selectedTheme) {
@@ -118,23 +128,23 @@ public class theory_and_tests extends AppCompatActivity {
                 topic_number=1;
                 break;
             case "Тема 2":
-                textView.setText("Открыта вторая тема");
+                textView.setText(R.string.text_lesson2_0);
                 topic_number=2;
                 break;
             case "Тема 3":
-                textView.setText("Открыта третья тема");
+                textView.setText(R.string.text_lesson3_0);
                 topic_number=3;
                 break;
             case "Тема 4":
-                textView.setText("Открыта четвертая тема");
+                textView.setText(R.string.text_lesson4_0);
                 topic_number=4;
                 break;
             case "Тема 5":
-                textView.setText("Тема пять");
+                textView.setText(R.string.text_lesson5_0);
                 topic_number=5;
                 break;
             case "Тема 6":
-                textView.setText("Тема шесть");
+                textView.setText(R.string.text_lesson6_0);
                 topic_number = 6;
                 break;
         }

@@ -15,13 +15,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.BreakIterator;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     private Button button1, button2, button3, button4, button5, button6;
-    private TextView main_theory;
+    private TextView textView;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,11 +45,36 @@ public class MainActivity extends AppCompatActivity {
         button5 = findViewById(R.id.button5);
         button6 = findViewById(R.id.button6);
 
-        main_theory = findViewById(R.id.main_theory);
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigator);
         bottomNavigationView.setSelectedItemId(R.id.home);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        DocumentReference userRef = db.collection("users").document(userId);
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                textView = findViewById(R.id.textView3);
+                if (documentSnapshot.exists()) {
+                    Long points = documentSnapshot.getLong("points");
+                    if (points != null) {
+                        textView.setText("Ваши поинты: " + points.toString());
+                    } else {
+                        textView.setText("Данные о поинтах отсутствуют");
+                    }
+                } else {
+                    textView.setText("Пользователь не найден в базе данных");
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                textView.setText("Ошибка при получении данных из базы данных: " + e.getMessage());
+            }
+        });
+    
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -118,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void start_new_activity(int button_number) {
         switch (button_number) {
             case 1:
@@ -140,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
     private void defining_team(String team) {
         Intent intent = new Intent(MainActivity.this, theory_and_tests.class);
         intent.putExtra("theme", team);
